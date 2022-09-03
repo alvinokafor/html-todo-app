@@ -14,7 +14,7 @@ const filters = {
     isCompleted: false
 }
 
-
+//renders todo list on browser displaying all todo's
 renderTodo(todoList, filters)
 
 
@@ -22,12 +22,13 @@ document.querySelector('#inputForm').addEventListener('submit', function(e) {
     e.preventDefault()
 
     todoList.push({
+        id: uuidv4(),
         title: e.target.elements.inputTodo.value,
         completed: false
     })
 
-    localStorage.setItem('todo', JSON.stringify(todoList))
-    document.querySelector('#todoInput').innerHTML = ''
+    saveTodos(todoList)
+    e.target.elements.inputTodo.value = ''
     renderTodo(todoList, filters)
 
 })
